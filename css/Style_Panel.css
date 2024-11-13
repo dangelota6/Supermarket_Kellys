@@ -1,0 +1,455 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 14 oct. 2024, 03:32:22
+    Author     : Danie
+*/
+
+/* Reset de márgenes y rellenos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Diseño general */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    overflow: auto;
+}
+
+/* Barra lateral */
+.sidebar {
+    width: 250px;
+    background-color: #fba136;
+    color: white;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+    width: 80px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    transition: all 0.3s ease; 
+}
+
+.user-role {
+    display: block; /* Asegúrate de que sea un bloque */
+    font-size: 14px; /* Tamaño de fuente para el cargo */
+    color: white; /* Color del texto */
+    background-color: #57c242; /* Color de fondo resaltado */
+    padding: 5px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    margin-top: 5px; /* Espacio entre el nombre y el cargo */
+}
+
+.user-role-1{
+    display: block; 
+    font-size: 14px; 
+    color: white; 
+    background-color: #fb180a; 
+    padding: 5px; 
+    border-radius: 5px; 
+    margin-top: 5px; 
+}
+
+.user-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+.user-name {
+    flex: 1;
+    font-size: 16px;
+}
+
+.sidebar.collapsed .user-img {
+    width: 50px; /* Reduce el tamaño de la imagen al colapsar */
+    height: 50px; /* Reduce el tamaño de la imagen al colapsar */
+}
+
+.sidebar.collapsed .user-name {
+    display: none; /* Ocultar nombre al colapsar */
+}
+
+/* Opciones en la barra lateral */
+.user-options ul {
+    list-style: none;
+    padding: 0;
+}
+
+.user-options li {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 15px 15px;
+}
+
+.user-options li:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Color de fondo al pasar el mouse */
+    transform: scale(1.05); /* Efecto de escala al hacer hover */
+}
+
+.user-options li img {
+    width: 25px;
+    margin-right: 15px;
+}
+
+.user-options li span {
+    font-size: 16px;
+}
+
+.sidebar.collapsed .user-options li span {
+    display: none; /* Ocultar texto al colapsar */
+}
+
+/* Barra superior */
+.top-bar {
+    height: 60px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 270px; /* Ajustar según el ancho de la barra lateral */
+    right: 0;
+    z-index: 1000;
+    transition: left 0.3s ease, right 0.3s ease;
+}
+
+.top-bar.collapsed {
+    left: 90px; /* Ajustar al colapsar */
+    right: 0;
+}
+
+.top-bar .logo-centered {
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Iconos en la barra superior */
+.top-bar-icons {
+    margin-left: 10px; /* Para empujar los iconos a la derecha */
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.top-bar-icons .icon {
+    width: 25px;
+    margin-left: 20px;
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+}
+
+.separator {
+    height: 2px;
+    background-color: #EAEAEA; /* Color del separador */
+    position: fixed;
+    top: 60px; /* Alinea el separador debajo de la barra superior */
+    left: 250px; /* Mismo ancho que la barra lateral */
+    right: 0; /* Para que ocupe todo el ancho de la pantalla */
+    z-index: 999; /* Asegúrate de que esté por debajo de la barra superior */
+}
+
+.sidebar.collapsed + .separator {
+    left: 80px; /* Ajusta el separador si el sidebar está colapsado */
+}
+
+/* Contenido principal */
+.main-content {
+    flex-grow: 1;
+    margin-left: 250px; /* Espacio reservado para la barra lateral */
+    margin-top: 70px;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.main-content h1 {
+    margin-bottom: 20px; /* Espacio debajo del h1 */
+}
+
+.sidebar.collapsed + .main-content {
+    margin-left: 80px; /* Ajustar margen al colapsar */
+}
+
+/*main content*/
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas de igual ancho */
+    gap: 20px; /* Espacio entre las columnas */
+}
+
+.form-group {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    cursor: not-allowed; /* Indicador visual de que el input no es editable */
+}
+
+.form-group input[readonly] {
+    background-color: #f0f0f0;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Espaciado entre botones */
+    margin-top: 20px; /* Espacio encima de los botones */
+}
+
+.btn {
+    padding: 10px 20px; /* Espaciado interno de los botones */
+    font-size: 16px; /* Tamaño de la fuente */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+}
+
+.left-btn {
+    background-color: #4CAF50; /* Color de fondo verde para el botón de guardar */
+    color: white; /* Color del texto */
+}
+
+.right-btn {
+    background-color: #f44336; /* Color de fondo rojo para el botón de cancelar */
+    color: white; /* Color del texto */
+}
+
+.left-btn:hover {
+    background-color: #45a049; /* Color de fondo al pasar el mouse */
+}
+
+.right-btn:hover {
+    background-color: #e53935; /* Color de fondo al pasar el mouse */
+}
+
+/* Estilos para el alert personalizado */
+.custom-alert {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4CAF50; /* Color verde por defecto */
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: none; /* Oculto por defecto */
+    transition: opacity 0.3s ease-in-out;
+}
+
+.custom-alert.success {
+    background-color: #4CAF50; /* Verde para éxito */
+}
+
+.custom-alert.error {
+    background-color: #f44336; /* Rojo para error */
+}
+
+/* Transición suave al mostrar y ocultar el alert */
+.custom-alert.show {
+    opacity: 1;
+}
+
+.custom-alert.hide {
+    opacity: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #e9e6e6; /* Color de resaltado al pasar el mouse */
+    cursor: pointer;
+}
+
+tr.selected {
+    background-color: #e9e6e6; /* Color de fondo para la fila seleccionada */
+}
+
+.edit-button {
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+}
+
+.edit-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: #4CAF50; /* Color de fondo verde */
+    color: white; /* Color del texto */
+    padding: 8px 12px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    text-decoration: none; /* Sin subrayado */
+    transition: background-color 0.3s ease; /* Efecto de transición */
+}
+
+.edit-button:hover {
+    background-color: #45a049; /* Color de fondo al pasar el mouse */
+}
+
+.edit-icon {
+    width: 20px; /* Ajusta el tamaño del icono */
+    height: 20px; /* Ajusta el tamaño del icono */
+    margin-right: 5px; /* Espacio entre el icono y el texto */
+}
+
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Queda en una posición fija */
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Alto completo */
+    overflow: auto; /* Agrega scroll si es necesario */
+    background-color: rgba(0, 0, 0, 0.7); /* Negro con opacidad */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* Cambia 15% a 10% o un valor que prefieras */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Ancho del modal */
+}
+
+.close {
+    color: #aaa;
+    float: right; /* Se posiciona a la derecha */
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas */
+    gap: 20px; /* Espacio entre columnas */
+}
+
+.form-group2 {
+    margin-bottom: 20px; /* Espacio debajo de cada grupo de input */
+}
+
+.form-group2 label {
+    display: block; /* Asegura que el label ocupe todo el ancho */
+    margin-bottom: 5px; /* Espacio debajo del label */
+    font-weight: bold; /* Negrita para los labels */
+}
+
+.form-group2 input {
+    width: 100%; /* Ancho completo del input */
+    padding: 10px; /* Espacio interno del input */
+    font-size: 16px; /* Tamaño de fuente */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #f9f9f9; /* Color de fondo */
+}
+
+.form-group2 select{
+    width: 100%; /* Ancho completo del input */
+    padding: 10px; /* Espacio interno del input */
+    font-size: 16px; /* Tamaño de fuente */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #f9f9f9; /* Color de fondo */
+}
+
+.button-container {
+    display: flex; /* Flexbox para el contenedor de botones */
+    justify-content: space-between; /* Espaciado entre botones */
+    margin-top: 20px; /* Espacio encima de los botones */
+}
+
+.btn {
+    padding: 12px 24px; /* Aumenta el tamaño del padding */
+    font-size: 18px; /* Aumenta el tamaño de la fuente */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    margin: 10px; /* Espacio alrededor de los botones */
+}
+
+.left-btn {
+    background-color: #4CAF50; /* Verde para el botón de guardar */
+    color: white; /* Color del texto */
+}
+
+.right-btn {
+    background-color: #f44336; /* Rojo para el botón de cancelar */
+    color: white; /* Color del texto */
+}
+
+.left-btn:hover {
+    background-color: #45a049; /* Color de fondo al pasar el mouse */
+}
+
+.right-btn:hover {
+    background-color: #e53935; /* Color de fondo al pasar el mouse */
+}
+
+#alert {
+    display: none; /* Ocultar por defecto */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4caf50; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 15px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    z-index: 1000; /* Asegurarse de que esté encima de otros elementos */
+}
